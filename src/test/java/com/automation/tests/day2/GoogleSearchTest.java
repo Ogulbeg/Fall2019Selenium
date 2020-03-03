@@ -30,7 +30,8 @@ public class GoogleSearchTest {
         // use Keys.ENTER - perform keyboard click
         // keysToSend - name of the parameter, we don't specify it
         search.sendKeys("Java", Keys.ENTER);
-// 2000 - 2 second
+
+        // 2000 - 2 second
         // 12000- 12 second
         //Thread.sleep()- is used to pause java program
         Thread.sleep(4000);

@@ -73,6 +73,7 @@ public class BasicNavigation {
 
         driver.close();//to close browser
         //browser cannot close itself
+
     }
     /**
      * Check if to strings are same. If print TEST PASSED! message.
