@@ -45,7 +45,9 @@ public class SeleniumOH1 {
         personalInfo.put("name", "Bryan");
         personalInfo.put("student_id","2314635541" );
         personalInfo.put("major", "computer sience");
+
         Iterator <String> mapIterator = personalInfo.keySet().iterator();
+
         while (mapIterator.hasNext()){
             String key = mapIterator.next();
             System.out.println(key + ":" + personalInfo.get(key));
