@@ -18,6 +18,8 @@ public class BrowserUtils {
             e.printStackTrace();
         }
     }
+
+
     public static List<String> getTextFromWebElements(List<WebElement> elements){
         List<String> textValues =new ArrayList<>();
         for (WebElement element: elements){
