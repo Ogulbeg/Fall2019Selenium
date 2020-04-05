@@ -9,10 +9,7 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.*;
 
 import java.io.IOException;
 
@@ -24,16 +21,22 @@ public abstract class AbstractTestBase {
     protected ExtentReports report;
     protected ExtentHtmlReporter htmlReporter;
     protected ExtentTest test;
-
+// @Optional - to make parameter optional
+    // if you don't specify it, testng will require to specify this parameter for every test, in xml runner
     @BeforeTest
-    public void setupTest() {
+    @Parameters("reportName")
+    public void setupTest(@Optional String reportName) {
+        System.out.println("Report name: "+reportName);
+
+         reportName=reportName ==null ? "report.html" : reportName+".html";
+
         report = new ExtentReports();
-        String reportPath = "";
+               String reportPath = "";
         // location of report file
         if (System.getProperty("os.name").toLowerCase().contains("win")) {
-            reportPath = System.getProperty("user.dir") + "\\test-output\\report.html";
+            reportPath = System.getProperty("user.dir") + "\\test-output\\"+reportName;
         } else {
-            reportPath = System.getProperty("user.dir") + "/test-output/report.html";
+            reportPath = System.getProperty("user.dir") + "/test-output/"+reportName;
         }
         // is a HTML report itself
         htmlReporter = new ExtentHtmlReporter(reportPath);
@@ -49,7 +52,7 @@ public abstract class AbstractTestBase {
 
     @BeforeMethod
     public void setup() {
-        String URL = ConfigurationReader.getProperty("qa1");
+        String URL = ConfigurationReader.getProperty("qa3");
         Driver.getDriver().get(URL);
         Driver.getDriver().manage().window().maximize();
         wait = new WebDriverWait(Driver.getDriver(), 15);
